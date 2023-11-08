@@ -20,7 +20,7 @@ class SportData(BaseModel):
 app = FastAPI()
 
 # initialize MongoDB client
-client = MongoClient('mongodb+srv://victortse1120:password@cluster0.rf7hr.mongodb.net/SportsApp?retryWrites=true&w=majority')
+client = MongoClient(API)
 db = client['SportsApp']
 collection = db['sports']
 
