@@ -3,6 +3,10 @@ from pydantic import BaseModel
 from typing import Dict, Optional
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+import os
+
+API = os.getenv('API')  # Fetch API from environment variables
+client = MongoClient(API)
 
 class SportDetails(BaseModel):
     format: Optional[str] = None
