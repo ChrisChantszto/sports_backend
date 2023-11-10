@@ -57,6 +57,7 @@ def get_sport_data_from_db(sport_type: str) -> Optional[Dict]:
     return sport_data
 
 def update_sport_data_in_db(sport_type: str, sport_data: Dict) -> Dict:
-    result = collection.update_one({"sport_type": sport_type}, {"$set": sport_data}, upsert=True)
-    return {"acknowledged": result.acknowledged, "matched_count": result.matched_count, "modified_count": result.modified_count}
+    sport_data["sport_type"] = sport_type
+    result = collection.insert_one(sport_data)
+    return {"acknowledged": result.acknowledged, "_id": str(result.inserted_id)}
 
